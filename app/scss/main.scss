@@ -1,3 +1,18 @@
 /* main scss file */
 
-@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+/* bootstrap grid only */
+
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+$grid-gutter-width: 30px;
+
+$container-large-desktop: 1110px + $grid-gutter-width;
+$container-lg:  $container-large-desktop;
+
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_responsive-visibility";
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_responsive-utilities";
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_clearfix";
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid-framework";
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid";
+@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_grid";
+
+//@import "./../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
