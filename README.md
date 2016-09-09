@@ -1,4 +1,8 @@
 # frontendkickstarter
+
+requirements
+node.js (npm)
+
 my gulp file &amp; packages config
 - npm install
 - gulp
