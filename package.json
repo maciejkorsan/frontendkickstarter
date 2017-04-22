@@ -1,24 +1,12 @@
 {
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "browser-sync": "^2.12.3",
-    "express": "^4.13.4",
+    "browser-sync": "^2.18.8",
+    "browserify": "^14.3.0",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.6.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-headerfooter": "^1.0.3",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-livereload": "^3.8.1",
-    "gulp-load-plugins": "^1.2.2",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-mock-server": "^1.1.2",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.1",
-    "gulp-through": "^0.4.0",
-    "gulp-uglify": "^1.5.3",
-    "gulp-useref": "^3.0.8",
-    "sass-lint": "^1.9.0"
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.2"
   }
 }
