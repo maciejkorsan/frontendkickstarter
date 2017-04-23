@@ -6,11 +6,13 @@ var autoprefixer = require('gulp-autoprefixer');
 var headerfooter = require('gulp-headerfooter');
 var browserSync = require('browser-sync').create();
 var browserify = require('gulp-browserify');
+var uglify = require('gulp-uglify');
 
 
 gulp.task('scripts', function() { 
     gulp.src('app/js/app.js')
         .pipe(browserify())
+        .pipe(uglify())
         .pipe(gulp.dest('./dist/js'))
 });
 
@@ -30,7 +32,7 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('serve', ['sass','html'], function() {
+gulp.task('serve', ['sass','html','scripts'], function() {
     browserSync.init({
         server: "./dist"
     });
