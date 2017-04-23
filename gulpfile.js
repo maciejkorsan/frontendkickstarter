@@ -1,3 +1,5 @@
+/* gulpfile by Maciej Korsan 04.2017 */
+
 'use strict';
  
 var gulp = require('gulp');

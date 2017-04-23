@@ -1,10 +1,10 @@
 # frontendkickstarter
 
-requirements
-node.js (npm)
-gulp-cli 
+requirements:
+- node.js (npm)
+- npm install -g gulp-cli 
 
-my gulp file &amp; packages config
+download my gulpfile &amp; packages config and run:
 - npm install
 - gulp
 - you're ready to go :)
