@@ -10,6 +10,10 @@ var browserSync = require('browser-sync').create();
 var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 
+gulp.task('assets', function() {
+  return gulp.src('./app/assets/**/*') 
+        .pipe(gulp.dest('./dist/assets/'));
+});
 
 gulp.task('scripts', function() { 
     gulp.src('app/js/app.js')
@@ -17,7 +21,6 @@ gulp.task('scripts', function() {
         .pipe(uglify())
         .pipe(gulp.dest('./dist/js'))
 });
-
 
 gulp.task('sass', function () {
   return gulp.src('./app/scss/main.scss')
@@ -34,7 +37,7 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('serve', ['sass','html','scripts'], function() {
+gulp.task('serve', ['sass','html','scripts','assets'], function() {
     browserSync.init({
         server: "./dist"
     });
@@ -42,6 +45,7 @@ gulp.task('serve', ['sass','html','scripts'], function() {
     gulp.watch("app/content/*.html", ['html']);
     gulp.watch("app/partials/*.html", ['html']);
     gulp.watch("app/js/*.js", ['scripts']);
+    gulp.watch("app/assets/**/*", ['assets']);
     gulp.watch("dist/*.html").on('change', browserSync.reload);
     gulp.watch("dist/js/*.js").on('change', browserSync.reload);
 });
