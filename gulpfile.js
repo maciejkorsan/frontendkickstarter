@@ -1,4 +1,4 @@
-/* gulpfile by Maciej Korsan 07.2017 */
+/* gulpfile by Maciej Korsan 01.2018 */
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
@@ -8,7 +8,6 @@ const browserSync = require('browser-sync').create();
 const browserify = require('gulp-browserify');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
-const eslint = require('gulp-eslint');
 const tinypng = require('gulp-tinypng-compress');
 
 
@@ -29,17 +28,13 @@ gulp.task('tinypng', function () {
 gulp.task('scripts', function() {
   gulp
     .src('app/js/app.js')
-    .pipe(eslint())
-    .on('error', function(err) {
-      browserSync.notify(err.message, 3000);
-      this.emit('end');
-    })
     .pipe(
       babel({
-        presets: ['es2015']
+        presets: ['env']
       })
-    )
-    .pipe(browserify())
+    ) 
+    .on('error', console.error.bind(console)) 
+    .pipe(browserify()) 
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js'));
 });
@@ -73,5 +68,7 @@ gulp.task('serve', ['sass', 'html', 'scripts', 'assets'], function() {
   gulp.watch('dist/*.html').on('change', browserSync.reload);
   gulp.watch('dist/js/*.js').on('change', browserSync.reload);
 });
+
+gulp.task('build', ['sass', 'html' ,'scripts', 'assets']);
 
 gulp.task('default', ['serve']);
