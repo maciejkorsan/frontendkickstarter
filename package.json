@@ -3,6 +3,7 @@
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.23.5",
     "browserify": "^15.2.0",
+    "ftp-deploy": "^1.2.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-babel": "^6.1.2",
@@ -10,6 +11,6 @@
     "gulp-headerfooter": "^1.0.3",
     "gulp-sass": "^3.1.0",
     "gulp-tinypng-compress": "^1.2.1",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^3.0.0"
   }
 }
