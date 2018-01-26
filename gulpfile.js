@@ -8,6 +8,7 @@ const browserSync = require('browser-sync').create();
 const browserify = require('gulp-browserify');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
+const rename = require('gulp-rename');
 const tinypng = require('gulp-tinypng-compress');
 
 
@@ -59,6 +60,7 @@ gulp.task('html', function() {
 gulp.task('serve', ['sass', 'html', 'scripts', 'assets'], function() {
   browserSync.init({
     server: './dist',
+    open: true // set to false to disable browser autostart
   });
   gulp.watch('app/scss/**/*', ['sass']);
   gulp.watch('app/content/*.html', ['html']);

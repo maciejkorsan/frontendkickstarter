@@ -9,6 +9,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-browserify": "^0.5.1",
     "gulp-headerfooter": "^1.0.3",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-tinypng-compress": "^1.2.1",
     "gulp-uglify": "^3.0.0"
