@@ -1,4 +1,4 @@
 /* main js file */ 
 
-const a a = 'hello';
+const a = 'hello';
 console.log(a);
