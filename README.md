@@ -1,4 +1,15 @@
-# frontendkickstarter
+# frontend kickstarter
+
+This is simple gulp 4.0 configuration, perfect for making simple, static websites.
+
+
+features 🚀:
+- autoreload on local webserver
+- sass support
+- dist building with minification
+- auto header / footer for content sites
+- circleci FTP autodeployment (read below)
+
 
 requirements:
 - node.js (npm)
