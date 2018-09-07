@@ -1,5 +1,3 @@
-/* gulpfile by Maciej Korsan 01.2018 */
-
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
@@ -8,26 +6,14 @@ const browserSync = require('browser-sync').create();
 const browserify = require('gulp-browserify');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
-const rename = require('gulp-rename');
-const tinypng = require('gulp-tinypng-compress');
 
 
 gulp.task('assets', function() {
   return gulp.src('./app/assets/**/*').pipe(gulp.dest('./dist/assets/'));
 });
 
-gulp.task('tinypng', function () {
-  gulp.src('./app/assets/img/**/*.{png,jpg,jpeg}')
-    .pipe(tinypng({
-      key: 'APIKEY',
-      sigFile: './app/assets/img/.tinypng-sigs',
-      log: true,
-    }))
-    .pipe(gulp.dest('./app/assets/img/'));
-});
-
 gulp.task('scripts', function() {
-  gulp
+  return gulp
     .src('app/js/app.js')
     .pipe(
       babel({
@@ -57,20 +43,19 @@ gulp.task('html', function() {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('serve', ['sass', 'html', 'scripts', 'assets'], function() {
+gulp.task('serve', gulp.series('sass', 'html', 'scripts', 'assets', function() {
   browserSync.init({
     server: './dist',
     open: true // set to false to disable browser autostart
   });
-  gulp.watch('app/scss/**/*', ['sass']);
-  gulp.watch('app/content/*.html', ['html']);
-  gulp.watch('app/partials/*.html', ['html']);
-  gulp.watch('app/js/*.js', ['scripts']);
-  gulp.watch('app/assets/**/*', ['assets']);
+  gulp.watch('app/scss/**/*', gulp.series('sass'));
+  gulp.watch('app/content/*.html',  gulp.series('html'));
+  gulp.watch('app/partials/*.html', gulp.series('html'));
+  gulp.watch('app/js/*.js',  gulp.series('scripts'));
+  gulp.watch('app/assets/**/*', gulp.series('assets'));
   gulp.watch('dist/*.html').on('change', browserSync.reload);
   gulp.watch('dist/js/*.js').on('change', browserSync.reload);
-});
+}));
 
-gulp.task('build', ['sass', 'html' ,'scripts', 'assets']);
-
-gulp.task('default', ['serve']);
+gulp.task('build', gulp.series('sass', 'html' ,'scripts', 'assets'));
+gulp.task('default', gulp.series('serve'));
