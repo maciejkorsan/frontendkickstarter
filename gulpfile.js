@@ -6,7 +6,15 @@ const browserSync = require('browser-sync').create();
 const browserify = require('gulp-browserify');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
+const plumber = require( 'gulp-plumber' );
+const beep = require( 'beepbeep' );
+const notify = require( 'gulp-notify' ); // Sends message notification to you.
 
+
+const errorHandler = r => {
+	notify.onError( '\n\n❌  ===> ERROR: <%= error.message %>\n' )( r );
+	beep();
+};
 
 gulp.task('assets', function() {
   return gulp.src('./app/assets/**/*').pipe(gulp.dest('./dist/assets/'));
@@ -15,12 +23,12 @@ gulp.task('assets', function() {
 gulp.task('scripts', function() {
   return gulp
     .src('app/js/app.js')
+		.pipe( plumber( errorHandler ) )
     .pipe(
       babel({
         presets: ['env']
       })
     ) 
-    .on('error', console.error.bind(console)) 
     .pipe(browserify()) 
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js'));
@@ -29,6 +37,7 @@ gulp.task('scripts', function() {
 gulp.task('sass', function() {
   return gulp
     .src('./app/scss/main.scss')
+		.pipe( plumber( () => {	notify.onError( '\n\n❌  ===> SASS ERROR %>\n' ) }))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(gulp.dest('./dist/css'))
